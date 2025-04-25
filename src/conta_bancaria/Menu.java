@@ -2,6 +2,7 @@ package conta_bancaria;
 
 import java.util.Scanner;
 
+import conta_bancaria.model.Conta;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -11,6 +12,9 @@ public class Menu {
 		Scanner sc = new Scanner(System.in);
 		
 		int opcao;
+		
+		Conta c1 = new Conta(1, 123, 1, "Alex", 10000);
+		c1.visualizar();
 		
 		do {
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND + "**************************************************");
