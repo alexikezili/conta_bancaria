@@ -68,6 +68,10 @@ public class Conta {
 		return true;
 	}
 	
+	public void depositar(float valor) {
+		this.saldo += valor;
+	}
+	
 	public void visualizar() {
 		
 		NumberFormat nfMoeda = NumberFormat.getCurrencyInstance();
