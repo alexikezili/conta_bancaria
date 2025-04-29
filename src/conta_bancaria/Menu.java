@@ -1,8 +1,11 @@
 package conta_bancaria;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
+import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -15,6 +18,22 @@ public class Menu {
 		
 		Conta c1 = new Conta(1, 123, 1, "Alex", 10000);
 		c1.visualizar();
+		c1.sacar(1000);
+		c1.depositar(200);
+		
+		ContaCorrente cc1 = new ContaCorrente(2, 456, 1, "Yuji", 100000, 20000);
+		cc1.visualizar();
+		cc1.sacar(300000);
+		cc1.visualizar();
+		cc1.depositar(10000);
+		cc1.visualizar();
+		
+		ContaPoupanca cp1 = new ContaPoupanca(3, 234, 2, "Ariel", 20000, LocalDate.now());
+		cp1.visualizar();
+		cp1.sacar(1000);
+		cp1.visualizar();
+		cp1.depositar(2000);
+		cp1.visualizar();
 		
 		do {
 			System.out.println(Cores.TEXT_YELLOW + Cores.ANSI_BLACK_BACKGROUND + "**************************************************");
