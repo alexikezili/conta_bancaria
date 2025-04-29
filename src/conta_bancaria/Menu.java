@@ -3,7 +3,6 @@ package conta_bancaria;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
@@ -15,11 +14,6 @@ public class Menu {
 		Scanner sc = new Scanner(System.in);
 		
 		int opcao;
-		
-		Conta c1 = new Conta(1, 123, 1, "Alex", 10000);
-		c1.visualizar();
-		c1.sacar(1000);
-		c1.depositar(200);
 		
 		ContaCorrente cc1 = new ContaCorrente(2, 456, 1, "Yuji", 100000, 20000);
 		cc1.visualizar();
