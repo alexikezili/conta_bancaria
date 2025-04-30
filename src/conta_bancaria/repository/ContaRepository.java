@@ -6,7 +6,7 @@ public interface ContaRepository {
 	
 	
 	//CRUD
-	public void porcurarPorNumero(int numero);
+	public void procurarPorNumero(int numero);
 	public void listarTodas();
 	public void cadastrar(Conta conta);
 	public void atualizar(Conta conta);

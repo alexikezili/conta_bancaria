@@ -1,21 +1,19 @@
 package conta_bancaria.model;
 
-import java.time.LocalDate;
-
 public class ContaPoupanca extends Conta{
 	
-	private LocalDate aniversario;
+	private int aniversario;
 	
-	public ContaPoupanca(int numero, int agencia, int tipo, String titular, float saldo, LocalDate aniversario) {
+	public ContaPoupanca(int numero, int agencia, int tipo, String titular, float saldo, int aniversario) {
 		super(numero, agencia, tipo, titular, saldo);
 		this.aniversario = aniversario;
 	}
 
-	public LocalDate getAniversario() {
+	public int getAniversario() {
 		return aniversario;
 	}
 
-	public void setAniversario(LocalDate aniversario) {
+	public void setAniversario(int aniversario) {
 		this.aniversario = aniversario;
 	}
 
