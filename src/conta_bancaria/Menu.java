@@ -1,9 +1,11 @@
 package conta_bancaria;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import conta_bancaria.controller.ContaController;
+import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
@@ -14,9 +16,9 @@ public class Menu {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		int opcao, numero, agencia, tipo, aniversario;
+		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 		
 		ContaController contas = new ContaController();
 		
@@ -97,22 +99,94 @@ public class Menu {
 			break;
 			
 			case 4 : System.out.println(Cores.TEXT_WHITE + "\nAtualizar dados da Conta\n");
+
+			// Informe o numero da conta
+			System.out.println("Digite o número da conta: ");
+			numero = sc.nextInt();
+			
+			// Checar se a conta existe
+			Optional<Conta> conta = contas.buscarNaCollection(numero);
+			
+			// Existe?
+			if(conta.isPresent()) {
+				
+				// Atualizar o dados
+				System.out.println("Digite o número da Agência:");
+				agencia = sc.nextInt();
+				
+				System.out.println("Digite o nome do Titular:");
+				sc.skip("\\R");
+				titular = sc.nextLine();
+				
+				// Recuperar o tipo da  conta
+				tipo = conta.get().getTipo();
+				
+				System.out.println("Digite o novo Saldo da conta:");
+				saldo = sc.nextFloat();
+				
+				// Identificar o tipo
+				switch(tipo) {
+					case 1 ->{ // Se for Conta Corrente
+								System.out.println("Digite o limite da conta:");
+								limite = sc.nextFloat();
+								contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+						}
+					case 2 ->{  // Se for Conta Poupança
+								System.out.println("Digite o dia do aniversário da conta:");
+								aniversario = sc.nextInt();
+								contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+						}
+				}
+			}else // Caso não exista a conta
+				System.out.printf("\n A conta número %d não existe!", numero);
+			
 			keyPress();
 			break;
 			
 			case 5 : System.out.println(Cores.TEXT_WHITE + "\nApagar a Conta\n");
+			System.out.println("Digite o número da conta: ");
+			numero = sc.nextInt();
+			
+			contas.deletar(numero);
 			keyPress();
 			break;
 			
 			case 6 : System.out.println(Cores.TEXT_WHITE + "\nSaque");
+
+			System.out.println("Digite o número da conta: ");
+			numero = sc.nextInt();
+			
+			System.out.println("Digite o valor do saque: ");
+			valor = sc.nextFloat();
+			
+			contas.sacar(numero, valor);
 			keyPress();
 			break;
 			
 			case 7 : System.out.println(Cores.TEXT_WHITE + "\nDepósito\n");
+			System.out.println("Digite o número da conta: ");
+			numero = sc.nextInt();
+			
+			System.out.println("Digite o valor do depósito: ");
+			valor = sc.nextFloat();
+			
+			contas.depositar(numero, valor);
 			keyPress();
 			break;
 			
 			case 8 : System.out.println(Cores.TEXT_WHITE + "\nTransferência entre Contas\n");
+			System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
+
+			System.out.println("Digite o número da conta de origem: ");
+			numero = sc.nextInt();
+			
+			System.out.println("Digite o número da conta de destino: ");
+			numeroDestino = sc.nextInt();
+			
+			System.out.println("Digite o valor do depósito: ");
+			valor = sc.nextFloat();
+			
+			contas.transferir(numero, numeroDestino, valor);
 			keyPress();
 			break;
 			
