@@ -42,13 +42,15 @@ public class Menu {
 			System.out.println("       6 - Sacar                                  ");
 			System.out.println("       7 - Depositar                              ");
 			System.out.println("       8 - Transferir valores entre Contas        ");
-			System.out.println("       9 - Sair                                   ");
+			System.out.println("       9 - Listar conta por Titular               ");
+			System.out.println("       0 - Sair                                   ");
 			System.out.println("                                                  ");
 			System.out.println("**************************************************");
 			System.out.println("       Entre com a opção desejada                 ");
 			System.out.println("                                                  " + Cores.TEXT_RESET);
 			
 			opcao = sc.nextInt();
+			sc.nextLine();
 			
 			switch (opcao) {
 			case 1 : System.out.println(Cores.TEXT_WHITE + "\nCriar Conta\n");
@@ -175,7 +177,6 @@ public class Menu {
 			break;
 			
 			case 8 : System.out.println(Cores.TEXT_WHITE + "\nTransferência entre Contas\n");
-			System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
 
 			System.out.println("Digite o número da conta de origem: ");
 			numero = sc.nextInt();
@@ -190,7 +191,17 @@ public class Menu {
 			keyPress();
 			break;
 			
-			case 9 : 
+			case 9 : System.out.println(Cores.TEXT_WHITE + "\nConsultar conta por Titular\n");
+			
+			System.out.println("Digite o nome do titular");
+			titular = sc.nextLine();
+			
+			contas.listarPorTitular(titular);
+			
+			keyPress();
+			break;
+			
+			case 0 : 
 				System.out.println(Cores.TEXT_YELLOW + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
 				sobre();
 				break;
@@ -201,7 +212,7 @@ public class Menu {
 			break;
 			}
 			
-		} while (opcao != 9);
+		} while (opcao != 0);
 		
 		sc.close();
 		}
